@@ -1,0 +1,57 @@
+[
+    {
+      "nombre": "Curso de JavaScript",
+      "instructor": "César Guerra",
+      "duracionHoras": 40,
+      "temas": [
+        "Variables y Tipos de Datos",
+        "Funciones",
+        "Objetos",
+        "Arrays",
+        "Callbacks",
+        "JSON"
+      ],
+      "esOnline": true,
+      "metadata": {
+        "version": "1.0.0",
+        "fechaLanzamiento": "2024-06-03"
+      },
+      "precio": null
+    },
+    {
+      "nombre": "Curso de Python",
+      "instructor": "Bill Gates",
+      "duracionHoras": 35,
+      "temas": [
+        "Sintaxis Básica",
+        "Estructuras de Control",
+        "Funciones",
+        "Módulos",
+        "Manejo de Errores"
+      ],
+      "esOnline": false,
+      "metadata": {
+        "version": "1.0.0",
+        "fechaLanzamiento": "2024-05-15"
+      },
+      "precio": 49.99
+    },
+    {
+      "nombre": "Curso de Desarrollo Web",
+      "instructor": "Chuck Norris",
+      "duracionHoras": 50,
+      "temas": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Responsive Design",
+        "Frameworks"
+      ],
+      "esOnline": true,
+      "metadata": {
+        "version": "1.0.0",
+        "fechaLanzamiento": null
+      },
+      "precio": 79.99
+    }
+]
