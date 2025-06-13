@@ -7,6 +7,7 @@ function getPokemonThen(name = 'ditto') {
                 throw new Error(`Error: ${response.status} - ${response.statusText}`);
             }
             return response.json()
+        })
         .then(pokemon => {
             console.log('Nombre:', pokemon.name);
             console.log('Altura:', pokemon.height);
@@ -18,7 +19,6 @@ function getPokemonThen(name = 'ditto') {
             console.error('Error al obtener el Pokémon:', error);
             throw error;
         })
-    })
 }
 
 getPokemonThen()
