@@ -16,9 +16,9 @@ function validarCampo(input, funcionValidacion) {
 }
 
 function validarNombre(nombre) {
-    return nombre.lenght === 0
+    return nombre.length === 0
         ? { valido: false, mensaje: 'El nombre es obligatorio' }
-        : nombre.lenght < 3
+        : nombre.length < 3
             ? { valido: false, mensaje: 'El nombre debe tener al menos 3 caracteres' }
             : { valido: true };
 }
