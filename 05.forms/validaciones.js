@@ -22,3 +22,35 @@ function validarNombre(nombre) {
             ? { valido: false, mensaje: 'El nombre debe tener al menos 3 caracteres' }
             : { valido: true };
 }
+
+function validarEmail(valor) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return valor.length === 0
+        ? { valido: false, mensaje: 'El email es obligatorio.' }
+        : !regex.test(valor)
+            ? { valido: false, mensaje: 'El formato del email no es válido.' }
+            : { valido: true };
+}
+
+function validarPassword(valor) {
+    switch(true) {
+        case valor.length === 0:
+            return { valido: false, mensaje: 'La contraseña es obligatoria.' };
+        case valor.length < 8:
+            return { valido: false, mensaje: 'La contraseña debe tener al menos 8 caracteres.' };
+        default:
+            return { valido: true };
+    }
+}
+
+function validarPais(valor) {
+    return valor === ''
+        ? { valido: false, mensaje: 'Debe seleccionar un país.' }
+        : { valido: true };
+}
+
+function validarTerminos(input) {
+    const errorSpan = input.parentElement.querySelector('.error-text-inline');
+    errorSpan.textContent = !input.checked ? 'Debe aceptar los términos.' : '';
+    return input.checked;
+}
