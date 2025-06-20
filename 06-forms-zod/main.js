@@ -1,46 +1,47 @@
+import { schema } from './schema.js';
+import { limpiarErrores, mostrarErrores } from './errors-display.js';
+
 document.addEventListener ('DOMContentLoaded', () => {
     /* VARIABLES PARA SELECCIONAR ELEMENTOS DEL DOM */
     const form = document.getElementById('registroForm');
-    const nombreInput = document.getElementById('nombreCompleto');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const paisSelect = document.getElementById('pais');
-    const terminosInput = document.getElementById('terminos');
     const mensajeExito = document.getElementById('mensajeExito');
-
-    /* AÑADIR EVENT LISTENERS PARA VALIDACIÓN EN TIEMPO REAL */
-    nombreInput.addEventListener('input', () => validarCampo(nombreInput, validarNombre));
-    emailInput.addEventListener('input', () => validarCampo(emailInput, validarEmail));
-    passwordInput.addEventListener('input', () => validarCampo(passwordInput, validarPassword));
-    paisSelect.addEventListener('change', () => validarCampo(paisSelect, validarPais));
-    terminosInput.addEventListener('change', () => validarTerminos(terminosInput));
 
     /* MANEJAR EL ENVIO DEL FORMULARIO */
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Prevenir que por defecto, el formulario recargue la página.
+        limpiarErrores(); // Limpiar errores previos
 
-        // Validar todos los campos una última vez antes de enviar
-        const esNombreValido = validarCampo(nombreInput, validarNombre);
-        const esEmailValido = validarCampo(emailInput, validarEmail);
-        const esPasswordValido = validarCampo(passwordInput, validarPassword);
-        const esPaisValido = validarCampo(paisSelect, validarPais);
-        const sonTerminosValidos = validarTerminos(terminosInput);
-
-        // Si alguna validación falla, detenemos el envío del formulario
-        if (!esNombreValido || !esEmailValido || !esPasswordValido || !esPaisValido || !sonTerminosValidos) {
-            console.log('Formulario no válido. Por favor, corrige los errores.');
-            return;
+        // 1. Recolectamos los datos del formulario
+        const formData = new FormData(form);
+        const datosFormulario = {
+            nombreCompleto: formData.get('nombre'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            pais: formData.get('pais'),
+            terminos: formData.get('terminos')
         }
 
-        // Si todas las validaciones son correctas, creamos el objetos de datos, previo a su envio.
-        const datosUsuario = {
-            name: nombreInput.value.trim(),
-            email: emailInput.value.trim(),
-            password: passwordInput.value.trim(),
-            country: paisSelect.value,
+        // 2. Validamos los datos con Zod
+        const resultadoValidacion = schema.safeParse(datosFormulario);
+
+        // 3. Verificamos el resultado de la validación
+        if (!resultadoValidacion.success) {
+            // Si la validación falla, mostramos los errores
+            console.error('Errores de validación:', resultadoValidacion.error.issues);
+            mostrarErrores(resultadoValidacion.error.issues);
+            return; // Detenemos el envío del formulario
         }
 
-        console.log('Datos del usuario:', datosUsuario);
+        // Si la validación es exitosa, los datos estan en resultadoValidacion.data
+        const datosValidos = resultadoValidacion.data;
+        console.log('Validación exitosa:', datosValidos);
+
+        // Marcamos todos los campos como exitosos en la UI
+        document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
+            if(input.type !== 'checkbox') {
+                input.classList.add('success');
+            }
+        });
 
         try {
         // Llamada a la API de reqres.in
@@ -50,7 +51,7 @@ document.addEventListener ('DOMContentLoaded', () => {
                 'Content-Type': 'application/json',
                 'x-api-key': 'reqres-free-v1'
             },
-            body: JSON.stringify(datosUsuario),
+            body: JSON.stringify(datosValidos),
         });
 
         if (!response.ok) {
@@ -66,9 +67,7 @@ document.addEventListener ('DOMContentLoaded', () => {
 
         // Limpiamos el formulario y las clases de validación
         form.reset();
-        document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
-            input.classList.remove('success', 'error');
-        })
+        limpiarErrores();
 
     } catch (error) {
         console.error('Error al enviar el formulario:', error);
