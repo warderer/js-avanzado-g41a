@@ -2,7 +2,7 @@
 
 // Limpiar todos los mensajes de errore y los estilos de los campos
 export function limpiarErrores() {
-    const errorSpans = document.querySelectorAll('.error-text', '.error-text-inline')
+    const errorSpans = document.querySelectorAll('.error-text, .error-text-inline')
     errorSpans.forEach(span => span.textContent = '')
 
     const inputs = document.querySelectorAll('form-group input, form-group select')
