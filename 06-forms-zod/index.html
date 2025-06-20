@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro con JS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Nuevo Usuario</h1>
+
+        <form id="registroForm" novalidate>
+            <div class="form-group">
+                <label for="nombreCompleto">Nombre Completo</label>
+                <input type="text" id="nombreCompleto" name="nombre" required minLength="3" placeholder="Ingrese su nombre completo">
+                <span class="error-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required placeholder="Escriba su correo electrónico">
+                <span class="error-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required minlenght="8">
+                <span class="error-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="pais">País</label>
+                <select id="pais" name="pais" required>
+                    <option value="">-- Seleccione su país --</option>
+                    <option value="ar">Argentina</option>
+                    <option value="ch">Chile</option>
+                    <option value="co">Colombia</option>
+                    <option value="mx">México</option>
+                </select>
+                <span class="error-text"></span>
+            </div>
+
+            <div class="form-group-inline">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto los términos y condiciones</label>
+                <span class="error-text-inline"></span>
+            </div>
+
+            <button type="submit">Registrarse</button>
+
+            <div id="mensajeExito" class="success-message"></div>
+
+        </form>
+    </div>
+
+    <script src="validaciones.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group-inline {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.form-group-inline label {
+    margin-left: 0.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Clases para validación --- */
+.error-text, .error-text-inline {
+    color: #d93025;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 4px;
+    min-height: 1em; /* Evita que el layout salte al aparecer el mensaje */
+}
+
+.error-text-inline {
+    margin-left: 1rem;
+}
+
+input.error, select.error {
+    border-color: #d93025;
+}
+
+input.success, select.success {
+    border-color: #1e8e3e;
+}
+
+.success-message {
+    margin-top: 1rem;
+    padding: 10px;
+    background-color: #e6f4ea;
+    color: #1e8e3e;
+    border: 1px solid #1e8e3e;
+    border-radius: 4px;
+    text-align: center;
+    display: none; /* Oculto por defecto */
+}
