@@ -1,0 +1,17 @@
+{
+  "name": "07-nodejs-npm",
+  "version": "1.1.0",
+  "description": "Aprender a usar Node JS y NPM",
+  "keywords": [
+    "nodejs",
+    "npm"
+  ],
+  "license": "ISC",
+  "author": "César Guerra",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
+
