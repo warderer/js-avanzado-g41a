@@ -1,13 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Vite App: ¿Quién esta en el espacio?</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main id="app">
+      <h1><span>🚀</span>¿Quién esta en el espacio?</h1>
+      <p>Haz clic en el botón para descubrir quiénes son los astronautas actualmente en órbita</p>
+
+      <div class="card">
+        <button id="fetch-button">Buscar Astronautas</button>
+      </div>
+
+      <div id="astronaunt-list-container">
+      </div>
+
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
